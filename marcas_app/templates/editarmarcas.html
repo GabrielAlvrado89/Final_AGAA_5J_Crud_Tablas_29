@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    <!--la tarjeta card -->
+    <div class="card">
+    <!--tarjeta-->
+    <div class="card-body">
+        <form action="/editarMarcas/" method="POST">
+        {% csrf_token %}
+        <!--formulario-->
+        <div class="from-group">
+            <input type="number" id="txtidmarcas" name="txtidmarcas" class="form-control" value="{{mismarcas.id_marcas}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-3">
+            <input type="number" id="txtidsucursal" name="txtidsucursal" class="form-control" value="{{mismarcas.id_sucursal}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtidproducto" name="txtidproducto" class="form-control" value="{{mismarcas.id_producto}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtnombremarca" name="txtnombremarca" class="form-control" value="{{mismarcas.Nombre_Marca}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtNumTelefono" name="txtNumTelefono" class="form-control" value="{{mismarcas.Numtelefono}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtcorreo" name="txtcorreo" class="form-control" value="{{mismarcas.Correo}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+        <button type="submit" class="btn btn-primary">Guardar</button> 
+        </div>
+        </form>
+    </div>
+    </div>
+    <!--fin de la tarjeta card -->
+</div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
