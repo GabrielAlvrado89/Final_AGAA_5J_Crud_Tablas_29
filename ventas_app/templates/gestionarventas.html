@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+<!--la fila-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+    <h1>Ingresar datos de Ventas</h1>
+    <div class="card"><!--Tarjeta-->
+        <div class="card-body">
+            <form action="/registrarVentas/" method="POST">{% csrf_token %}
+                <div class="form-group">
+                        <input type="number" id="txtidventa" name="txtidventa" class="form-control" placeholder="Id Ventas" minlength="6" maxlength="6" required>
+                </div>
+                <div class="form-group py-3">
+                    <input type="number" id="idventa" name="txtidProductos" class="form-control" placeholder="Id Productos" minlength="6" maxlength="6" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="number" id="idclientes" name="txtidClientes" class="form-control" placeholder="Id Clientes" minlength="6" maxlength="6" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="number" id="Cantidad" name="txtCantidad" class="form-control" placeholder="Cantidad" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="time" id="HoraVenta" name="txtHoraVenta" class="form-control" placeholder="Hora de venta" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="text" id="Sucursal" name="txtSucursal" class="form-control" placeholder="Sucursal" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="text" id="Marcas" name="txtMarcas" class="form-control" placeholder="Marcas" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="text" id="Fpago" name="txtFormaPago" class="form-control" placeholder="Forma de pago" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div><!--Tarjeta-->
+    </div><!--Tarjeta-->
+</div><!--columa izquierda-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-8">
+    
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="mt-4 mb-4"> Mi Dulceria </h1>
+        <img class="w-50" src="{% static "img/Ventas.jpeg" %}" alt="Trulli" width="400" height="400">
+    </div>
+
+    <!--columna derecha-->
+    <h1>Lista de ventas</h1>
+    <div class="table-responsive"><!--tabla resposive-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">id</th>
+            <th scope="col">id_Productos</th>
+            <th scope="col">id_Clientes</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Hora de venta</th>
+            <th scope="col">Sucursal</th>
+            <th scope="col">Marcas</th>
+            <th scope="col">Forma de pago</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for M in misventas %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{M.id_venta}}</td>
+            <td>{{M.id_Productos}}</td>
+            <td>{{M.id_Clientes}}</td>
+            <td>{{M.Cantidad}}</td>
+            <td>{{M.Hora_venta}}</td>
+            <td>{{M.Sucursal}}</td>
+            <td>{{M.Marcas}}</td>
+            <td>{{M.FormaPago}}</td>
+            <td><a href="seleccionarVentas/{{M.id_venta}}" class="btn btn-info">Editar</a></td> <!--Falta link-->
+            <td><a href="borrarVentas/{{M.id_venta}}" class="btn btn-danger">Borrar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div><!--columna derecha-->
+</div>
+<!--la fila-->
+{% endblock cuerpo %}
