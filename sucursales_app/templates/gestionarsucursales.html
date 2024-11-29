@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+<!--la fila-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+    <h1>Ingresar datos de Sucursales</h1>
+    <div class="card"><!--Tarjeta-->
+        <div class="card-body">
+            <form action="/registrarSucursal/" method="POST">{% csrf_token %}
+                <div class="form-group">
+                        <input type="number" id="txtid" name="txtid" class="form-control" placeholder="Id Sucursal" minlength="6" maxlength="6" required>
+                </div>
+                <div class="form-group py-3">
+                        <input type="text" id="nombre" name="txtnombre" class="form-control" placeholder="Nombre Sucursal"  maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="text" id="Direccion" name="txtdireccion" class="form-control" placeholder="Direccion" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="number" id="NumTelefono" name="NumTel" class="form-control" placeholder="Numero de telefono"  minlength="7" maxlength="10" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="text" id="correo" name="txtcorreo" class="form-control" placeholder="Correo"  maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="time" id="Horario" name="txthorario" class="form-control" placeholder="Horario"  maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div><!--Tarjeta-->
+    </div><!--Tarjeta-->
+</div><!--columa izquierda-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-8">
+    
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="mt-4 mb-4"> Mi Dulceria </h1>
+        <img class="w-50" src="{% static "img/sucursal.png" %}" alt="Trulli" width="400" height="400">
+    </div>
+    <!--columna derecha-->
+    <h1>Lista de sucursales</h1>
+    <div class="table-responsive"><!--tabla resposive-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">id</th>
+            <th scope="col">Nombre</th>
+            <th scope="col">Direccion</th>
+            <th scope="col">Numero de telefono</th>
+            <th scope="col">Correo electronico</th>
+            <th scope="col">Horario</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for M in misucursal %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{M.id_sucursal}}</td>
+            <td>{{M.nombre}}</td>
+            <td>{{M.Direccion}}</td>
+            <td>{{M.NumTelefono}}</td>
+            <td>{{M.correo}}</td>
+            <td>{{M.Horario}}</td>
+            <td><a href="seleccionarSucursal/{{M.id_sucursal}}" class="btn btn-info">Editar</a></td> <!--Falta link-->
+            <td><a href="borrarSucursal/{{M.id_sucursal}}" class="btn btn-danger">Borrar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div><!--columna derecha-->
+</div>
+<!--la fila-->
+{% endblock cuerpo %}

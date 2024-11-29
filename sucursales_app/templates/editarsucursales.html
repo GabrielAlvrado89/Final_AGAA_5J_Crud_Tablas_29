@@ -1,0 +1,40 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    <!--la tarjeta card -->
+    <div class="card">
+    <!--tarjeta-->
+    <div class="card-body">
+        <form action="/editarSucursal/" method="POST">
+        {% csrf_token %}
+        <!--formulario-->
+        <div class="from-group">
+            <input type="number" id="txtid" name="txtid" class="form-control" value="{{misucursal.id_sucursal}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-3">
+            <input type="text" id="txtnombre" name="txtnombre" class="form-control" value="{{misucursal.nombre}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtdireccion" name="txtdireccion" class="form-control" value="{{misucursal.Direccion}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="NumTel" name="NumTel" class="form-control" value="{{misucursal.NumTelefono}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtcorreo" name="txtcorreo" class="form-control" value="{{misucursal.correo}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="time" id="txthorario" name="txthorario" class="form-control" value="{{misucursal.Horario}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+        <button type="submit" class="btn btn-primary">Guardar</button> 
+        </div>
+        </form>
+    </div>
+    </div>
+    <!--fin de la tarjeta card -->
+</div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
