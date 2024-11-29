@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+<!--la fila-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+    <h1>Ingresar datos de Empleados</h1>
+    <div class="card"><!--Tarjeta-->
+        <div class="card-body">
+            <form action="/registrarEmpleados/" method="POST">{% csrf_token %}
+                <div class="form-group">
+                        <input type="number" id="txtidEmpleados" name="txtidEmpleados" class="form-control" placeholder="Id Empleados" minlength="6" maxlength="6" required>
+                </div>
+                <div class="form-group py-3">
+                        <input type="text" id="Nombre" name="txtnombre" class="form-control" placeholder="Nombre"  maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="number" id="Numtel" name="txtnumtel" class="form-control" placeholder="Numero de telefono" minlength="7" maxlength="10" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="text" id="CURP" name="txtCURP" class="form-control" placeholder="CURP" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="RFC" name="txtRFC" class="form-control" placeholder="RFC" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="number" id="edad" name="txtedad" class="form-control" placeholder="Edad" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="sexo" name="txtsexo" class="form-control" placeholder="Sexo" maxlength="100" list="genero" required>
+                </div>
+                <datalist id="genero">
+                    <option value="Masculino">
+                    <option value="Femenino">
+                    <option value="Otro">
+                </datalist>
+                <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div><!--Tarjeta-->
+    </div><!--Tarjeta-->
+</div><!--columa izquierda-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-8">
+    
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="mt-4 mb-4"> Mi Dulceria </h1>
+        <img class="w-50" src="{% static "img/Empleados.png" %}" alt="Trulli" width="400" height="400">
+    </div>
+
+    <!--columna derecha-->
+    <h1>Lista de empleados</h1>
+    <div class="table-responsive"><!--tabla resposive-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">id</th>
+            <th scope="col">Nombre Completo</th>
+            <th scope="col">Numero de telefono</th>
+            <th scope="col">CURP</th>
+            <th scope="col">RFC</th>
+            <th scope="col">Edad</th>
+            <th scope="col">Sexo</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for M in misempleados %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{M.id_empleado}}</td>
+            <td>{{M.Nombre_Completo}}</td>
+            <td>{{M.numtelefono}}</td>
+            <td>{{M.CURP}}</td>
+            <td>{{M.RFC}}</td>
+            <td>{{M.Edad}}</td>
+            <td>{{M.sexo}}</td>
+            <td><a href="seleccionarEmpleados/{{M.id_empleado}}" class="btn btn-info">Editar</a></td> <!--Falta link-->
+            <td><a href="borrarEmpleados/{{M.id_empleado}}" class="btn btn-danger">Borrar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div><!--columna derecha-->
+</div>
+<!--la fila-->
+{% endblock cuerpo %}

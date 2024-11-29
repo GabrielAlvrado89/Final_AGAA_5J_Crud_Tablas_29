@@ -1,0 +1,48 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    <!--la tarjeta card -->
+    <div class="card">
+    <!--tarjeta-->
+    <div class="card-body">
+        <form action="/editarEmpleados/" method="POST">
+        {% csrf_token %}
+        <!--formulario-->
+        <div class="from-group">
+            <input type="number" id="txtidEmpleados" name="txtidEmpleados" class="form-control" value="{{misempleados.id_empleado}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-3">
+            <input type="text" id="txtnombre" name="txtnombre" class="form-control" value="{{misempleados.Nombre_Completo}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtnumtel" name="txtnumtel" class="form-control" value="{{misempleados.numtelefono}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtCURP" name="txtCURP" class="form-control" value="{{misempleados.CURP}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtRFC" name="txtRFC" class="form-control" value="{{misempleados.RFC}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtedad" name="txtedad" class="form-control" value="{{misempleados.Edad}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtsexo" name="txtsexo" class="form-control" value="{{misempleados.sexo}}" maxlength="100" list="genero" required/>
+        </div>
+        <datalist id="genero">
+            <option value="Masculino">
+            <option value="Femenino">
+            <option value="Otro">
+        </datalist>
+        <div class="from-group py-2">
+        <button type="submit" class="btn btn-primary">Guardar</button> 
+        </div>
+        </form>
+    </div>
+    </div>
+    <!--fin de la tarjeta card -->
+</div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
