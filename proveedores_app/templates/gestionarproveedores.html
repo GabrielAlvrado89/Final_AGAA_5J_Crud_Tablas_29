@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+{% block cuerpo %}
+<div class="row">
+<!--la fila-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+    <h1>Ingresar datos de Proveedores</h1>
+    <div class="card"><!--Tarjeta-->
+        <div class="card-body">
+            <form action="/registrarProveedor/" method="POST">{% csrf_token %}
+                <div class="form-group">
+                        <input type="number" id="txtidproveedor" name="txtidproveedor" class="form-control" placeholder="Id Proveedor" minlength="6" maxlength="6" required>
+                </div>
+                <div class="form-group py-3">
+                        <input type="text" id="Producto" name="txtproducto" class="form-control" placeholder="Producto"  maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="number" id="Cantidad" name="txtcantidad" class="form-control" placeholder="Cantidad" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <input type="text" id="Sucursal" name="txtSucursal" class="form-control" placeholder="Sucursal" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="number" id="Telefono" name="txtTelefono" class="form-control" placeholder="Numero de Telefono"  minlength="7" maxlength="10" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="text" id="Correo" name="txtCorreo" class="form-control" placeholder="Correo electronico" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="time" id="Hora" name="txtHora" class="form-control" placeholder="Hora" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                    <input type="date" id="FechaVenta" name="txtFechaventa" class="form-control" placeholder="FechaVenta" maxlength="100" required>
+                </div>
+                <div class="form-group py-2">
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                </div>
+            </form>
+        </div><!--Tarjeta-->
+    </div><!--Tarjeta-->
+</div><!--columa izquierda-->
+<div class="col-sm-12 col-md-4 col-lg-4 col-xl-8">
+    
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="mt-4 mb-4"> Mi Dulceria </h1>
+        <img class="w-50" src="{% static "img/Proveedor.png" %}" alt="Trulli" width="400" height="400">
+    </div>
+
+    <!--columna derecha-->
+    <h1>Lista de proveedores</h1>
+    <div class="table-responsive"><!--tabla resposive-->
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">id</th>
+            <th scope="col">Producto</th>
+            <th scope="col">Cantidad</th>
+            <th scope="col">Sucursal</th>
+            <th scope="col">Numero de Telefono</th>
+            <th scope="col">Correo electronico</th>
+            <th scope="col">Horario</th>
+            <th scope="col">Fecha de venta</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% for M in misproveedores %}
+            <tr>
+            <td>{{forloop.counter}}</td>
+            <td>{{M.id_proveedores}}</td>
+            <td>{{M.Producto}}</td>
+            <td>{{M.Cantidad}}</td>
+            <td>{{M.Sucursal}}</td>
+            <td>{{M.Telefono}}</td>
+            <td>{{M.correo}}</td>
+            <td>{{M.Hora}}</td>
+            <td>{{M.FechaVenta}}</td>
+            <td><a href="seleccionarProveedor/{{M.id_proveedores}}" class="btn btn-info">Editar</a></td> <!--Falta link-->
+            <td><a href="borrarProveedor/{{M.id_proveedores}}" class="btn btn-danger">Borrar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+</div><!--columna derecha-->
+</div>
+<!--la fila-->
+{% endblock cuerpo %}

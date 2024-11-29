@@ -1,0 +1,46 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    <!--la tarjeta card -->
+    <div class="card">
+    <!--tarjeta-->
+    <div class="card-body">
+        <form action="/editarProveedor/" method="POST">
+        {% csrf_token %}
+        <!--formulario-->
+        <div class="from-group">
+            <input type="number" id="txtidproveedor" name="txtidproveedor" class="form-control" value="{{misproveedores.id_proveedores}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-3">
+            <input type="text" id="txtproducto" name="txtproducto" class="form-control" value="{{misproveedores.Producto}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtcantidad" name="txtcantidad" class="form-control" value="{{misproveedores.Cantidad}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtSucursal" name="txtSucursal" class="form-control" value="{{misproveedores.Sucursal}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtTelefono" name="txtTelefono" class="form-control" value="{{misproveedores.Telefono}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="{{misproveedores.correo}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="time" id="txtHora" name="txtHora" class="form-control" value="{{misproveedores.Hora}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="date" id="txtFechaventa" name="txtFechaventa" class="form-control" value="{{misproveedores.FechaVenta}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+        <button type="submit" class="btn btn-primary">Guardar</button> 
+        </div>
+        </form>
+    </div>
+    </div>
+    <!--fin de la tarjeta card -->
+</div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
