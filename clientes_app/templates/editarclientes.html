@@ -1,0 +1,43 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    <!--la tarjeta card -->
+    <div class="card">
+    <!--tarjeta-->
+    <div class="card-body">
+        <form action="/editarClientes/" method="POST">
+        {% csrf_token %}
+        <!--formulario-->
+        <div class="from-group">
+            <input type="number" id="txtidcliente" name="txtidcliente" class="form-control" value="{{misclientes.id_cliente}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-3">
+            <input type="text" id="txtnombre" name="txtnombre" class="form-control" value="{{misclientes.NombreCompleto}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtedad" name="txtedad" class="form-control" value="{{misclientes.Edad}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtNumTel" name="txtNumTel" class="form-control" value="{{misclientes.NumeroTelefono}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtCorreo" name="txtCorreo" class="form-control" value="{{misclientes.Correo}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtDomicilio" name="txtDomicilio" class="form-control" value="{{misclientes.Domicilio}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtFormaPago" name="txtFormaPago" class="form-control" value="{{misclientes.FormaPago}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+        <button type="submit" class="btn btn-primary">Guardar</button> 
+        </div>
+        </form>
+    </div>
+    </div>
+    <!--fin de la tarjeta card -->
+</div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
