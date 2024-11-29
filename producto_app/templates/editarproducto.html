@@ -1,0 +1,52 @@
+{% extends "base.html" %} {% block cuerpo %}
+<div class="row">
+    <div class="col-md-4 offset-md-4">
+    <!--la tarjeta card -->
+    <div class="card">
+    <!--tarjeta-->
+    <div class="card-body">
+        <form action="/editarProducto/" method="POST">
+        {% csrf_token %}
+        <!--formulario-->
+        <div class="from-group py-3">
+            <input type="number" id="txtidproducto" name="txtidproducto" class="form-control" value="{{misproductos.id_producto}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtidproveedores" name="txtidproveedores" class="form-control" value="{{misproductos.id_proveedores}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtidsucursal" name="txtidsucursal" class="form-control" value="{{misproductos.id_sucursal}}" minlength="6" maxlength="6" readonly required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtproducto" name="txtproducto" class="form-control" value="{{misproductos.TipoProducto}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtcantidad" name="txtcantidad" class="form-control" value="{{misproductos.Cantidad}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtnombreproducto" name="txtnombreproducto" class="form-control" value="{{misproductos.NombreProducto}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtsucursal" name="txtsucursal" class="form-control" value="{{misproductos.Sucursal}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="text" id="txtcorreo" name="txtcorreo" class="form-control" value="{{misproductos.Correo}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtNumTelefono" name="txtNumTelefono" class="form-control" value="{{misproductos.NumTelefono}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+            <input type="number" id="txtprecio" name="txtprecio" class="form-control" value="{{misproductos.precio}}" maxlength="100" required/>
+        </div>
+        <div class="from-group py-2">
+        <button type="submit" class="btn btn-primary">Guardar</button> 
+        </div>
+        </form>
+    </div>
+    </div>
+    <!--fin de la tarjeta card -->
+</div>
+<!--columna-->
+</div>
+<!--la fila-->
+{% endblock %}
